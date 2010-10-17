@@ -1,0 +1,17 @@
+  #if($response.facetFields)
+    <h2>Facets</h2>
+    #foreach($field in $response.facetFields)
+      <span class="facet-field">$field.name</span>
+      
+      <ul>
+        #foreach($facet in $field.values)
+            #if ($facet.name)
+              <li><a href="#url_for_facet_filter($field.name, $facet.name)">$facet.name</a> ($facet.count)</li>
+            #else
+              #set($neg_field_name = '-' + $field.name)
+              <li><a href="#url_for_home#lens&fq=$esc.url($neg_field_name):[*+TO+*]"><em>missing</em></a> ($facet.count)</li>
+            #end
+        #end
+      </ul>
+    #end
+  #end
