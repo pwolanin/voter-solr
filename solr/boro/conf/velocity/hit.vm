@@ -13,10 +13,7 @@
     #if($prefix)
       $prefix
     #end
-    $g:  
-    #foreach($v in $doc.getFieldValues($g))
-      $v
-    #end
+    $g:#foreach($v in $doc.getFieldValues($g)) $v#end
   #end
 #end
 
