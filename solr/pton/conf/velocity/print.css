@@ -1,0 +1,25 @@
+.navigators {
+  width: 0;
+  display: none;
+}
+
+#logo {
+  margin: 10px;
+  border-style: none; 
+}
+
+.constraints {
+  display: none;
+}
+
+.query-box {
+  display: none;
+}
+
+.pagination {
+  margin-left: 2px;
+}
+
+.result-document {
+  margin-left: 2px;
+}
