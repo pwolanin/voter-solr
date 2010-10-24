@@ -404,6 +404,7 @@
 
   <field name="VoteBuilderID" required="true" type="string" indexed="true" stored="true" />   
   <field name="Age" type="tint" indexed="true" stored="true" />
+  <field name="StreetNo" type="tint" indexed="true" stored="true" />
   <field name="DOB" type="tdate" indexed="true" stored="true" />
   <field name="DOR" type="tdate" indexed="true" stored="true" />
   <field name="RequestReceived" type="tdate" indexed="true" stored="true" />
