@@ -15,11 +15,15 @@
 cd `dirname $0`
 echo "Stopping Solr"
 
-STOP_KEY=$(< ./logs/key.txt)
+if [ -z $JETTY_HOME ]; then
+  JETTY_HOME='./apache-solr/example'
+fi
 
-java -DSTOP.PORT=8079 $STOP_KEY -jar start.jar --stop
+STOP_KEY=$(< $JETTY_HOME/logs/key.txt)
 
-if [ -s logs/solr.pid ]; then
-  rm logs/solr.pid
+java -DSTOP.PORT=8079 $STOP_KEY -jar $JETTY_HOME/start.jar --stop
+
+if [ -s $JETTY_HOME/logs/solr.pid ]; then
+  rm $JETTY_HOME/logs/solr.pid
 fi
 

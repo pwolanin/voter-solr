@@ -31,18 +31,22 @@ fi
 
 echo "Starting Solr on port $port"
 
+if [ -z $JETTY_HOME ]; then
+  JETTY_HOME='./apache-solr/example'
+fi
+
 JAVA_OPTS="$JAVA_OPTS -DSTOP.PORT=8079 -Xmx128m"
-JAVA_OPTS="$JAVA_OPTS -Dsolr.solr.home=./solr -Djetty.home=."
-JAVA_OPTS="$JAVA_OPTS -Djetty.port=$port -Djetty.logs=./logs"
+JAVA_OPTS="$JAVA_OPTS -Dsolr.solr.home=./solr -Djetty.home=$JETTY_HOME"
+JAVA_OPTS="$JAVA_OPTS -Djetty.port=$port -Djetty.logs=$JETTY_HOME/logs"
 export JAVA_OPTS
 
 rm -f logs/console.log
 # </dev/null is not needed on GNU/linux, but may be on Free BSD
 # Jetty echos the stop key to stdout if it's not provided.
-nohup java $JAVA_OPTS -jar start.jar </dev/null > ./logs/key.txt  2> ./logs/console.log  &
+nohup java $JAVA_OPTS -jar $JETTY_HOME/start.jar </dev/null > $JETTY_HOME/logs/key.txt  2> $JETTY_HOME/logs/console.log  &
 
 # Write the process ID into the file "pid"
-echo $! > ./logs/solr.pid
+echo $! > $JETTY_HOME/logs/solr.pid
 
 echo "Solr running under process ID $!";
 exit
